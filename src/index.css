@@ -1,13 +1,73 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+#root {
+  background-color: #cff8f8;
+  height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.navbar {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bg-myBg {
+  background: linear-gradient(#e264e6, #9198e5);
+}
+.navbar-brand {
+  margin-left: 40px;
+  font-size: 1.5rem !important;
+}
+
+.Navi {
+  border-radius: 30px;
+}
+.Toggle {
+  margin-right: 20px;
+}
+
+.Links {
+  font-size: x-large;
+}
+.nav-link {
+  color: rgb(229, 186, 219) !important;
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out,
+    border-color 0.5 ease-in-out !important;
+}
+
+.nav-link:hover {
+  color: rgb(148, 14, 141) !important;
+}
+.inputForm {
+  text-align: center;
+}
+label {
+  display: block;
+}
+input[type="text"] {
+  display: block;
+  margin: auto;
+}
+.todo {
+  display: block;
+  margin-top: 10px;
+  background-color: #9198e5;
+  width: 400px;
+  display: table;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 5px;
+  text-align: left;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 600px !important;
+  }
+
+  .nav-link {
+    padding-left: 50px !important;
+  }
 }
