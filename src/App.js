@@ -7,13 +7,23 @@ import About from "./components/About";
 import Navi from "./components/Navi";
 import Notfound from "./components/Notfound";
 
+let i = 0;
+
 function App() {
-  let i = 0;
   const [todos, setTodos] = useState([]);
 
   const addTodo = (todo) => {
-    todo.id = ++i;
+    i++;
+    todo.id = i;
+    console.log(i);
     setTodos(todos.concat(todo));
+  };
+
+  const deleteTodo = (id) => {
+    const newTodos = todos.filter((todo) => {
+      return todo.id !== id;
+    });
+    setTodos(newTodos);
   };
 
   return (
@@ -24,7 +34,9 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<Home todos={todos} addTodo={addTodo} />}
+              element={
+                <Home todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
+              }
             />
             <Route path="/about" exact element={<About />} />
             <Route path="/settings" exact element={<Settings />} />

@@ -1,11 +1,11 @@
 import AddNew from "./AddNew";
 import Todos from "./Todos";
 
-const Home = ({ todos, addTodo }) => {
+const Home = ({ todos, addTodo, deleteTodo }) => {
   return (
     <div>
       <AddNew addTodo={addTodo} />
-      <Todos todos={todos} />
+      <Todos todos={todos} deleteTodo={deleteTodo} />
     </div>
   );
 };

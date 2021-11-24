@@ -15,9 +15,22 @@ const AddNew = ({ addTodo }) => {
   };
   return (
     <div className="inputForm">
-      <form onSubmit={handleSubmit} onChange={handleChange}>
+      <form onSubmit={handleSubmit}>
         <label>Add new</label>
-        <input type="text" value={state} />
+
+        <div className="inputfield">
+          <input type="text" onChange={handleChange} value={state} />
+          <button
+            style={{
+              display: "inline-block",
+              marginLeft: "20px",
+              backgroundColor: "green",
+              borderRadius: "10px",
+            }}
+          >
+            Add
+          </button>
+        </div>
       </form>
     </div>
   );
