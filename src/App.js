@@ -15,6 +15,7 @@ function App() {
   const addTodo = (todo) => {
     i++;
     todo.id = i;
+    todo.dragId = i.toString();
     console.log(i);
     setTodos(todos.concat(todo));
   };
@@ -35,7 +36,12 @@ function App() {
             <Route
               path="/"
               element={
-                <Home todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
+                <Home
+                  todos={todos}
+                  setTodos={setTodos}
+                  addTodo={addTodo}
+                  deleteTodo={deleteTodo}
+                />
               }
             />
             <Route path="/about" exact element={<About />} />

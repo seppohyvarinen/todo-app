@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import AddModal from "./AddModal";
 
 const AddNew = ({ addTodo }) => {
   const [state, AddState] = useState("");
+  const [modal, setModal] = useState(false);
 
   const handleChange = (e) => {
     AddState(e.target.value);
@@ -14,24 +16,19 @@ const AddNew = ({ addTodo }) => {
     AddState("");
   };
   return (
-    <div className="inputForm">
-      <form onSubmit={handleSubmit}>
-        <label>Add new</label>
-
-        <div className="inputfield">
-          <input type="text" onChange={handleChange} value={state} />
-          <button
-            style={{
-              display: "inline-block",
-              marginLeft: "20px",
-              backgroundColor: "green",
-              borderRadius: "10px",
-            }}
-          >
-            Add
-          </button>
-        </div>
-      </form>
+    <div>
+      {" "}
+      <button className="addbutton" onClick={() => setModal(true)}>
+        Add New
+      </button>
+      {modal && (
+        <AddModal
+          hC={handleChange}
+          hS={handleSubmit}
+          state={state}
+          close={setModal}
+        />
+      )}
     </div>
   );
 };
