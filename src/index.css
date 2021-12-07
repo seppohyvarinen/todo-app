@@ -42,30 +42,44 @@
 .nav-link:hover {
   color: rgb(148, 14, 141) !important;
 }
-.inputForm {
-  text-align: center;
-
-  vertical-align: middle;
+.Active {
+  color: #6f7aec !important;
 }
+
 label {
   display: block;
+  position: relative;
+  bottom: 10px;
 }
 input[type="text"] {
+  text-align: left;
   margin: auto;
   border-radius: 5px;
 }
 
 input[type="text"]:focus {
-  background-color: rgb(246, 188, 241);
+  background-color: rgb(247, 204, 255);
+}
+.List {
+  width: 350px;
+  margin-top: 20px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 30px;
 }
 .todos {
   margin-top: 30px;
 }
+h4 {
+  font-size: xx-small;
+}
 .todo {
-  display: block;
   margin-top: 10px;
   background-color: #9198e5;
-  width: 350px;
+  border: #6f7aec 2px solid;
+  width: 300px;
   display: table;
   margin: 0 auto;
   margin-top: 15px;
@@ -73,23 +87,75 @@ input[type="text"]:focus {
   text-align: left;
   border-radius: 10px;
   cursor: move;
+  position: relative;
+  right: 5px;
 }
 
 .todo:hover {
   transform: scale(0.5);
-  animation: pulse2 3s infinite;
+  animation: pulse2 4s infinite;
+}
+.inputForm {
+  display: flex;
+  width: 400px;
+}
+#inputHeader {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -10px;
 }
 
 .inputfield {
-  text-align: center;
-  margin-left: 30px;
+  position: relative;
+  left: 10px;
+  bottom: 10px;
+  margin-top: 5px;
+  align-items: center;
+}
+.tagfield {
+  position: relative;
+  left: 10px;
+  bottom: 10px;
+  margin-top: 5px;
+  justify-content: center;
+}
+textarea {
+  border-radius: 5px;
+  text-align: left;
+}
+textarea:focus {
+  background-color: rgb(247, 204, 255);
+  transform: scale(0.5);
+  animation: pulse3 4s infinite;
+}
+.descriptionfield {
+  position: relative;
+  left: 10px;
+  bottom: 10px;
+  margin-top: 5px;
+
+  justify-content: center;
 }
 .draggable {
   cursor: move;
 }
 
 .deletebtn {
-  text-align: right;
+  float: right;
+  border-radius: 40px;
+  border: #9198e5 2px solid;
+  width: 30px;
+  color: white;
+  background-color: rgb(245, 48, 153);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+#edit {
+  background-color: rgb(25, 240, 204);
+  position: relative;
+  right: 5px;
 }
 
 .addbutton {
@@ -125,18 +191,86 @@ input[type="text"]:focus {
   width: 400px;
   height: 400px;
   border-radius: 20px;
-  background-color: white;
+  background-color: rgb(255, 227, 254);
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
 .closeModal {
+  position: relative;
   text-align: right;
 }
 
 .closeModal button {
+  position: relative;
   outline: 2px deeppink;
   border-radius: 14px;
+  top: 20px;
+  right: 10px;
+  transform: scale(1);
+  animation: pulse3 2s infinite;
+  z-index: 999;
+}
+
+.submitTodo {
+  position: relative;
+  bottom: 8px;
+  background-color: rgb(118, 245, 224);
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 5px;
+  transform: scale(1);
+  animation: pulse3 2s infinite;
+}
+.cancelTodo {
+  position: relative;
+  bottom: 8px;
+  left: 10px;
+  background-color: #7618ac;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  transform: scale(1);
+  animation: pulse3 2s infinite;
+}
+
+#dropdown-basic-button {
+  background-color: #e264e6 !important;
+  position: relative;
+  top: 10px;
+  right: 80px;
+  border-radius: 15px !important;
+}
+.dropdown-menu.show {
+  background-color: #ecc2ff;
+  border-radius: 10px;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.Searchcomponent {
+  position: relative;
+  bottom: 20px;
+  float: right;
+}
+.Searchbar {
+  width: 100px;
+  margin-left: 10px;
+  background-color: white !important;
+  animation: none;
+}
+
+.DateInfo {
+  font-size: x-small;
+  position: relative;
+  margin-top: -15px;
 }
 
 @media screen and (min-width: 768px) {
@@ -168,13 +302,30 @@ input[type="text"]:focus {
 
 @keyframes pulse2 {
   0% {
-    transform: scale(0.95);
+    transform: scale(0.98);
     box-shadow: 0 0 0 0 rgba(243, 165, 250, 0.7);
   }
 
   70% {
     transform: scale(1);
     box-shadow: 0 0 0 8px #cff8f8;
+  }
+
+  100% {
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 rgba(221, 206, 235, 0.678);
+  }
+}
+
+@keyframes pulse3 {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(243, 165, 250, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgb(255, 227, 254);
   }
 
   100% {

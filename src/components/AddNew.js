@@ -1,19 +1,28 @@
 import React from "react";
-import { useState } from "react";
+
 import AddModal from "./AddModal";
 
-const AddNew = ({ addTodo }) => {
-  const [state, AddState] = useState("");
-  const [modal, setModal] = useState(false);
-
-  const handleChange = (e) => {
-    AddState(e.target.value);
-  };
-
+const AddNew = ({
+  addTodo,
+  AddState,
+  Addtag,
+  AddDesc,
+  handleChange,
+  handleTag,
+  handleDesc,
+  setModal,
+  state,
+  tag,
+  desc,
+  modal,
+}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodo({ content: state });
+    addTodo({ name: state, tag: tag, description: desc });
     AddState("");
+    Addtag("");
+    AddDesc("");
+    setModal(false);
   };
   return (
     <div>
@@ -24,9 +33,14 @@ const AddNew = ({ addTodo }) => {
       {modal && (
         <AddModal
           hC={handleChange}
+          hT={handleTag}
+          hD={handleDesc}
           hS={handleSubmit}
           state={state}
+          tag={tag}
+          desc={desc}
           close={setModal}
+          mode="add"
         />
       )}
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-const Todos = ({ todos, deleteTodo, setTodos }) => {
+const Todos = ({ todos, deleteTodo, setTodos, setFltodos, edit, initEdit }) => {
   const todoList = todos.length ? (
     todos.map((todo, index) => {
       return (
@@ -13,12 +13,29 @@ const Todos = ({ todos, deleteTodo, setTodos }) => {
               {...provided.dragHandleProps}
               ref={provided.innerRef}
             >
-              <span className="todo">
-                {todo.content}
+              <span className="todo" onClick={() => console.log(todo)}>
+                {todo.name}
+
                 <button
+                  title="Delete this task from the list"
                   className="deletebtn"
                   onClick={() => deleteTodo(todo.id)}
-                ></button>
+                >
+                  {" "}
+                  X{" "}
+                </button>
+                <button
+                  title="Edit this task"
+                  className="deletebtn"
+                  id="edit"
+                  onClick={() => initEdit(todo)}
+                >
+                  {" "}
+                  <i className="fa fa-pencil"></i>{" "}
+                </button>
+              </span>
+              <span>
+                <input type="checkbox" />
               </span>
             </div>
           )}
@@ -41,10 +58,10 @@ const Todos = ({ todos, deleteTodo, setTodos }) => {
     if (!result.destination) {
       return;
     }
-    setTodos();
+
     const files = reorder(todos, result.source.index, result.destination.index);
-    setTodos(files);
-    console.log(todos);
+
+    setFltodos(files);
   };
 
   return (
