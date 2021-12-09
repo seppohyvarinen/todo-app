@@ -17,6 +17,7 @@ function App() {
     i++;
     todo.id = i;
     todo.dragId = i.toString();
+    todo.done = false;
     todo.date = new Date();
     console.log(todo.date);
 
@@ -33,6 +34,16 @@ function App() {
     });
     setTodos(newTodos);
     setFltodos(newFlTodos);
+  };
+
+  const sortByDate = () => {
+    var temp = [...fltodos];
+    temp.sort(function (a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+    console.log(fltodos);
+    setFltodos(temp);
+    console.log(fltodos);
   };
 
   const filterTodos = (byThis, mode) => {
@@ -68,6 +79,7 @@ function App() {
                   addTodo={addTodo}
                   deleteTodo={deleteTodo}
                   filter={filterTodos}
+                  sort={sortByDate}
                 />
               }
             />

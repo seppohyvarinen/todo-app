@@ -1,25 +1,43 @@
 import { Link } from "react-router-dom";
-import React from "react";
+
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./Navi.css";
+import { useState } from "react";
+
 const Navi = () => {
+  const [expanded, setExpanded] = useState(false);
   return (
-    <Navbar className="Navi" bg="myBg" variant="dark" sticky="top" expand="md">
+    <Navbar
+      className="Navi"
+      bg="myBg"
+      variant="dark"
+      sticky="top"
+      expand="md"
+      expanded={expanded}
+    >
       <Navbar.Brand className="Header" as={Link} to="/">
         My Todo-app
       </Navbar.Brand>
-      <Navbar.Toggle className="Toggle" aria-controls="responsive-navbar-nav" />
+      <Navbar.Toggle
+        className="Toggle"
+        aria-controls="responsive-navbar-nav"
+        onClick={() => setExpanded(expanded ? false : "expanded")}
+      />
 
       <Navbar.Collapse id="responsive-navbar-nav">
         <Container className="Links">
           <Nav className="col justify-content-center">
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/" onClick={() => setExpanded(false)}>
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/settings">
+            <Nav.Link
+              as={Link}
+              to="/settings"
+              onClick={() => setExpanded(false)}
+            >
               Settings
             </Nav.Link>
-            <Nav.Link as={Link} to="/about">
+            <Nav.Link as={Link} to="/about" onClick={() => setExpanded(false)}>
               About
             </Nav.Link>
           </Nav>

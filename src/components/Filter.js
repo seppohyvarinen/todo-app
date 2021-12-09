@@ -1,11 +1,12 @@
 import { DropdownButton, Dropdown } from "react-bootstrap";
 
-const Filter = ({ todos, filter }) => {
-  var list = [];
+const Filter = ({ todos, filter, sort }) => {
+  var filters = [];
+  var orderBy = [];
   var values = [];
   var key = 0;
 
-  list = todos.map((todo) => {
+  filters = todos.map((todo) => {
     if (!values.includes(todo.tag)) {
       values.push(todo.tag);
       return (
@@ -20,16 +21,34 @@ const Filter = ({ todos, filter }) => {
     }
     return null;
   });
-  list.push(
+  filters.push(
     <Dropdown.Item onClick={() => filter("all")} key={++key}>
       Show All
     </Dropdown.Item>
   );
+  orderBy.push(
+    <Dropdown.Item onClick={() => sort()} key={++key}>
+      Last edited
+    </Dropdown.Item>
+  );
 
   return (
-    <DropdownButton id="dropdown-basic-button" title="Filter By Tags">
-      {list}
-    </DropdownButton>
+    <span>
+      <DropdownButton
+        id="dropdown-basic-button"
+        title="Filter By"
+        style={{ display: "inline-block", marginRight: "5px" }}
+      >
+        {filters}
+      </DropdownButton>
+      <DropdownButton
+        id="dropdown-basic-button"
+        title="Order By"
+        style={{ display: "inline-block" }}
+      >
+        {orderBy}
+      </DropdownButton>
+    </span>
   );
 };
 

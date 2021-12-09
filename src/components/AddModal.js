@@ -1,11 +1,12 @@
 const AddModal = ({ hC, hS, hT, hD, state, close, tag, desc, mode, date }) => {
   var info = "";
+
   var submitText = "";
   if (mode === "add") {
     info = "Please fill all the fields and press add-button";
     submitText = "Add";
   } else {
-    info = "Edit the fields you want";
+    info = "Last edited:";
     submitText = "Save";
   }
   return (
@@ -17,13 +18,14 @@ const AddModal = ({ hC, hS, hT, hD, state, close, tag, desc, mode, date }) => {
 
         <div className="inputForm">
           <form onSubmit={hS}>
-            <label id="inputHeader">{info}</label>
-            {mode !== "add" && (
-              <div className="DateInfo">Last edited: {date}</div>
-            )}
+            <label id="inputHeader">
+              {info}
+              {mode !== "add" && new Date(date).toLocaleString()}
+            </label>
+
             <div className="inputfield">
-              <h4>Name of the task</h4>
-              <input type="text" onChange={hC} value={state} />
+              <h4>Name of the task (max 20 characters)</h4>
+              <input type="text" onChange={hC} value={state} maxLength="20" />
             </div>
             <div className="tagfield">
               <h4>Tag of the task</h4>

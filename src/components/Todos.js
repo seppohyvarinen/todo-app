@@ -1,8 +1,19 @@
-import React from "react";
+import CheckMark from "../img/checkbox.png";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-const Todos = ({ todos, deleteTodo, setTodos, setFltodos, edit, initEdit }) => {
+const Todos = ({
+  todos,
+  deleteTodo,
+  setTodos,
+  setFltodos,
+  edit,
+  initEdit,
+  handleDone,
+}) => {
+  const handleCheckbox = (todo) => {
+    handleDone(todo);
+  };
   const todoList = todos.length ? (
     todos.map((todo, index) => {
       return (
@@ -13,9 +24,14 @@ const Todos = ({ todos, deleteTodo, setTodos, setFltodos, edit, initEdit }) => {
               {...provided.dragHandleProps}
               ref={provided.innerRef}
             >
-              <span className="todo" onClick={() => console.log(todo)}>
-                {todo.name}
-
+              <span
+                style={{
+                  textDecorationLine: todo.done ? "line-through" : "none",
+                }}
+                className="todo"
+              >
+                <span style={{ fontSize: "x-large" }}>{todo.name}</span>
+                <p className="deleteText">Delete</p>
                 <button
                   title="Delete this task from the list"
                   className="deletebtn"
@@ -24,6 +40,7 @@ const Todos = ({ todos, deleteTodo, setTodos, setFltodos, edit, initEdit }) => {
                   {" "}
                   X{" "}
                 </button>
+                <p className="editText">Edit</p>
                 <button
                   title="Edit this task"
                   className="deletebtn"
@@ -33,9 +50,22 @@ const Todos = ({ todos, deleteTodo, setTodos, setFltodos, edit, initEdit }) => {
                   {" "}
                   <i className="fa fa-pencil"></i>{" "}
                 </button>
-              </span>
-              <span>
-                <input type="checkbox" />
+                <p className="doneText">Done?</p>
+                <input
+                  type="checkbox"
+                  checked={todo.done ? true : false}
+                  title="Mark as done"
+                  className="MarkAsDoneBox"
+                  onClick={() => handleCheckbox(todo)}
+                  onChange={() => {}}
+                />
+                <img
+                  src={CheckMark}
+                  style={{ display: todo.done ? "inline-block" : "none" }}
+                  className={todo.done ? "checkMark" : "inActive"}
+                  alt="Checkmark"
+                  onClick={() => handleCheckbox(todo)}
+                />
               </span>
             </div>
           )}

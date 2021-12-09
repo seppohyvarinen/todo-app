@@ -14,6 +14,7 @@ const Home = ({
   setFltodos,
   filter,
   fltodos,
+  sort,
 }) => {
   const [edit, setEdit] = useState(false);
   const [state, AddState] = useState("");
@@ -22,6 +23,7 @@ const Home = ({
   const [modal, setModal] = useState(false);
   const [editId, setEditId] = useState(0);
   const [date, setDate] = useState(new Date().toString());
+  const [done, setDone] = useState(false);
 
   const handleChange = (e) => {
     AddState(e.target.value);
@@ -60,6 +62,14 @@ const Home = ({
     AddDesc("");
     setEdit(false);
   };
+
+  const handleDone = (todo) => {
+    console.log(todo.done);
+    todo.done = !todo.done;
+    console.log(todo.done);
+    setDone(!done);
+  };
+
   return (
     <div>
       {edit && (
@@ -92,7 +102,9 @@ const Home = ({
           desc={desc}
           modal={modal}
         />
-        {todos.length !== 0 && <Filter todos={todos} filter={filter} />}
+        {todos.length !== 0 && (
+          <Filter todos={todos} filter={filter} sort={sort} />
+        )}
         {todos.length !== 0 && <SearchBar todos={todos} filter={filter} />}
         <Todos
           todos={fltodos}
@@ -101,6 +113,7 @@ const Home = ({
           edit={setEdit}
           initEdit={initEdit}
           deleteTodo={deleteTodo}
+          handleDone={handleDone}
         />
       </div>
     </div>
