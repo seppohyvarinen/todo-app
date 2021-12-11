@@ -15,6 +15,7 @@ const Home = ({
   filter,
   fltodos,
   sort,
+  theme,
 }) => {
   const [edit, setEdit] = useState(false);
   const [state, AddState] = useState("");
@@ -101,6 +102,7 @@ const Home = ({
           tag={tag}
           desc={desc}
           modal={modal}
+          theme={theme}
         />
         {todos.length !== 0 && (
           <Filter todos={todos} filter={filter} sort={sort} />

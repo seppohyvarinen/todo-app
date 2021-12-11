@@ -15,6 +15,7 @@ const AddNew = ({
   tag,
   desc,
   modal,
+  theme,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +28,11 @@ const AddNew = ({
   return (
     <div>
       {" "}
-      <button className="addbutton" onClick={() => setModal(true)}>
+      <button
+        className="addbutton"
+        style={{ backgroundColor: theme === "alt" ? "green" : null }}
+        onClick={() => setModal(true)}
+      >
         Add New
       </button>
       {modal && (

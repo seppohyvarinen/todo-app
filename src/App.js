@@ -12,6 +12,7 @@ let i = 0;
 function App() {
   const [todos, setTodos] = useState([]);
   const [fltodos, setFltodos] = useState(todos);
+  const [theme, setTheme] = useState("default");
 
   const addTodo = (todo) => {
     i++;
@@ -62,10 +63,18 @@ function App() {
     }
   };
 
+  const handleTheme = (newTheme) => {
+    setTheme(newTheme);
+    console.log(theme);
+  };
+
   return (
     <BrowserRouter>
-      <div className="App">
-        <Navi />
+      <div
+        className="App"
+        style={{ backgroundColor: theme === "alt" ? "#CAF6DC" : null }}
+      >
+        <Navi theme={theme} />
         <div className="Content">
           <Routes>
             <Route
@@ -80,11 +89,16 @@ function App() {
                   deleteTodo={deleteTodo}
                   filter={filterTodos}
                   sort={sortByDate}
+                  theme={theme}
                 />
               }
             />
             <Route path="/about" exact element={<About />} />
-            <Route path="/settings" exact element={<Settings />} />
+            <Route
+              path="/settings"
+              exact
+              element={<Settings setTheme={handleTheme} />}
+            />
             <Route path="*" exact element={<Notfound />} />
           </Routes>
         </div>

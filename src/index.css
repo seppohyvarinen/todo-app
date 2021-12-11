@@ -5,7 +5,8 @@
   text-align: center;
   font-family: "Patrick Hand", cursive;
 }
-#root {
+
+.App {
   background-color: #cff8f8;
   height: 100vh;
   overflow: scroll;
@@ -18,6 +19,9 @@
 }
 .bg-myBg {
   background: linear-gradient(#e264e6, #9198e5);
+}
+.bg-myBg2 {
+  background: linear-gradient(#c4ebc4, #ffec83);
 }
 .navbar-brand {
   margin-left: 40px;
