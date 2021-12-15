@@ -2,14 +2,20 @@ import CheckMark from "../img/checkbox.png";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
+/* Todos.js contains the component Todos that returns the todos as draggable JSX elements. It receives the todos and
+the functions for deleting and initializing editing as props. For making the elements draggable, I used
+react-beautiful-dnd library to achieve this
+*/
+
 const Todos = ({
   todos,
   deleteTodo,
   setTodos,
   setFltodos,
-  edit,
+
   initEdit,
   handleDone,
+  theme,
 }) => {
   const handleCheckbox = (todo) => {
     handleDone(todo);
@@ -27,15 +33,26 @@ const Todos = ({
               <span
                 style={{
                   textDecorationLine: todo.done ? "line-through" : "none",
+                  backgroundColor: theme === "alt" ? "#AF7272" : null,
+                  border: theme === "alt" ? "#894C4C 2px solid" : null,
+                  borderRadius: theme === "alt" ? "0px" : null,
                 }}
-                className="todo"
+                className={theme === "alt" ? "alt-todo" : "todo"}
               >
-                <span style={{ fontSize: "x-large" }}>{todo.name}</span>
+                <span
+                  className={theme === "alt" ? "alt-todo-text" : null}
+                  style={{ fontSize: "large" }}
+                >
+                  {todo.name}
+                </span>
                 <p className="deleteText">Delete</p>
                 <button
                   title="Delete this task from the list"
                   className="deletebtn"
-                  onClick={() => deleteTodo(todo.id)}
+                  onClick={() => {
+                    window.confirm(`Delete the todo ${todo.name} ? `) &&
+                      deleteTodo(todo.id);
+                  }}
                 >
                   {" "}
                   X{" "}

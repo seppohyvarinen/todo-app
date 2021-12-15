@@ -6,6 +6,13 @@ import Filter from "./Filter";
 import { useState } from "react";
 import SearchBar from "./Searchbar";
 
+/* Home.js is the Homepage of the app but it also stores the "temporary" states needed when adding and editing Todos.
+These states include "state" that serves as the name of the todo, "tag" as the tag of the todo and "desc" as the description
+of the todo.
+It also stores the date todo was last edited and information whether the Todo is done or not.
+It takes the functions for adding and deleting
+the todos (as well as the Todo array itself) as props and passes them to components that need them */
+
 const Home = ({
   todos,
   addTodo,
@@ -25,6 +32,10 @@ const Home = ({
   const [editId, setEditId] = useState(0);
   const [date, setDate] = useState(new Date().toString());
   const [done, setDone] = useState(false);
+
+  /*
+    These three handlers handle the state of name (state), tag (tag) and desc (description) that are added to every new todo (and edited todo)
+  */
 
   const handleChange = (e) => {
     AddState(e.target.value);
@@ -85,6 +96,7 @@ const Home = ({
           tag={tag}
           desc={desc}
           date={date}
+          theme={theme}
         />
       )}
 
@@ -105,9 +117,11 @@ const Home = ({
           theme={theme}
         />
         {todos.length !== 0 && (
-          <Filter todos={todos} filter={filter} sort={sort} />
+          <Filter todos={todos} filter={filter} sort={sort} theme={theme} />
         )}
-        {todos.length !== 0 && <SearchBar todos={todos} filter={filter} />}
+        {todos.length !== 0 && (
+          <SearchBar theme={theme} todos={todos} filter={filter} />
+        )}
         <Todos
           todos={fltodos}
           setTodos={setTodos}
@@ -116,6 +130,7 @@ const Home = ({
           initEdit={initEdit}
           deleteTodo={deleteTodo}
           handleDone={handleDone}
+          theme={theme}
         />
       </div>
     </div>

@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 
-const SearchBar = ({ filter }) => {
+/*
+Searchbar.js uses the filter function it receives as props to filter the todos realtime according to the search parameters.
+I used useEffect to achieve this realtime functionality. It calls the filter function everytime the searchParams state is changed.
+The filter function changes the search parameters and the names to lowercase when searching, so the search
+works case insensitively.
+*/
+
+const SearchBar = ({ filter, theme }) => {
   const [searchParams, setSearchParams] = useState("");
 
   useEffect(() => {
@@ -28,7 +35,7 @@ const SearchBar = ({ filter }) => {
         </label>
         <input
           type="text"
-          className="Searchbar"
+          className={theme === "alt" ? "alt-Searchbar" : "Searchbar"}
           placeholder="Search todos..."
           onChange={handleChange}
           value={searchParams}

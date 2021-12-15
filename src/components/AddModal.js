@@ -1,4 +1,22 @@
-const AddModal = ({ hC, hS, hT, hD, state, close, tag, desc, mode, date }) => {
+/* AddModal.js has the component AddModal, which creates the modal used for adding and editing the todos.
+Depending on the "mode" prop it returns a little bit different texts and also has different functionality.
+It receives the states that store the input data and the functions that handle adding/editing the data
+as props.
+*/
+
+const AddModal = ({
+  hC,
+  hS,
+  hT,
+  hD,
+  state,
+  close,
+  tag,
+  desc,
+  mode,
+  date,
+  theme,
+}) => {
   var info = "";
 
   var submitText = "";
@@ -11,27 +29,36 @@ const AddModal = ({ hC, hS, hT, hD, state, close, tag, desc, mode, date }) => {
   }
   return (
     <div className="modalBG">
-      <div className="theModal">
+      <div
+        className="theModal"
+        style={{
+          backgroundColor: theme === "alt" ? "rgb(255, 232, 189)" : null,
+        }}
+      >
         <div className="closeModal">
           <button onClick={() => close(false)}> X </button>
         </div>
 
-        <div className="inputForm">
+        <div className={theme === "alt" ? "alt-input-form" : "inputForm"}>
           <form onSubmit={hS}>
-            <label id="inputHeader">
+            <label id={theme === "alt" ? "alt-inputHeader" : "inputHeader"}>
               {info}
               {mode !== "add" && new Date(date).toLocaleString()}
             </label>
 
-            <div className="inputfield">
+            <div className={theme === "alt" ? "alt-inputfield" : "inputfield"}>
               <h4>Name of the task (max 20 characters)</h4>
               <input type="text" onChange={hC} value={state} maxLength="20" />
             </div>
-            <div className="tagfield">
+            <div className={theme === "alt" ? "alt-tagfield" : "tagfield"}>
               <h4>Tag of the task</h4>
               <input type="text" onChange={hT} value={tag} />
             </div>
-            <div className="descriptionfield">
+            <div
+              className={
+                theme === "alt" ? "alt-descriptionfield" : "descriptionfield"
+              }
+            >
               <h4>Description</h4>
               <textarea
                 rows="5"
@@ -41,10 +68,16 @@ const AddModal = ({ hC, hS, hT, hD, state, close, tag, desc, mode, date }) => {
                 value={desc}
               ></textarea>
             </div>
-            <button type="submit" className="submitTodo" onClick={hS}>
+            <button
+              type="submit"
+              className={theme === "alt" ? "alt-submitTodo" : "submitTodo"}
+            >
               {submitText}
             </button>
-            <button className="cancelTodo" onClick={() => close(false)}>
+            <button
+              className={theme === "alt" ? "alt-cancelTodo" : "cancelTodo"}
+              onClick={() => close(false)}
+            >
               Cancel
             </button>
           </form>

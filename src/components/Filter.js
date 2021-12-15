@@ -1,6 +1,14 @@
 import { DropdownButton, Dropdown } from "react-bootstrap";
 
-const Filter = ({ todos, filter, sort }) => {
+/*
+The Filter.js contains the component Filter that uses upper level functions to handle the filtering
+and sorting of the list.
+It receives the todos and the functions for this as props.
+It returns 2 Dropdown Button elements. The first contains all the tags the user can filter by and the other
+contains the option "Last edited" which the user can click to sort the todos by last edited.
+*/
+
+const Filter = ({ todos, filter, sort, theme }) => {
   var filters = [];
   var orderBy = [];
   var values = [];
@@ -35,16 +43,21 @@ const Filter = ({ todos, filter, sort }) => {
   return (
     <span>
       <DropdownButton
-        id="dropdown-basic-button"
+        id={theme === "alt" ? "altbutton" : "dropdown-basic-button"}
         title="Filter By"
-        style={{ display: "inline-block", marginRight: "5px" }}
+        style={{
+          display: "inline-block",
+          marginRight: "5px",
+        }}
       >
         {filters}
       </DropdownButton>
       <DropdownButton
-        id="dropdown-basic-button"
+        id={theme === "alt" ? "altbutton" : "dropdown-basic-button"}
         title="Order By"
-        style={{ display: "inline-block" }}
+        style={{
+          display: "inline-block",
+        }}
       >
         {orderBy}
       </DropdownButton>
